@@ -17,9 +17,9 @@
 <main>
     {% if server_status %}
 <section class="summary">
-    <p><img src="{{ url_for('static', filename='assets/characters-icon.png') }}" alt="Characters Icon" style="width: 5em; height: 5em; vertical-align: middle;"> Characters: {{ characters|length }}</p>
-    <p><img src="{{ url_for('static', filename='assets/location-icon.png') }}" alt="Location Icon" style="width: 5em; height: 5em; vertical-align: middle;"> Locations: {{ locations.info.count }}</p>
-    <p><img src="{{ url_for('static', filename='assets/episodes-icon.png') }}" alt="Episodes Icon" style="width: 5em; height: 5em; vertical-align: middle;"> Episodes: {{ episodes.info.count }}</p>
+    <p><img src="{{ url_for('static', filename='assets/characters-icon.png') }}" alt="Characters Icon" style="width: 5em; height: 5em; vertical-align: middle;"> Characters: {{ total_characters }}</p>
+    <p><img src="{{ url_for('static', filename='assets/location-icon.png') }}" alt="Location Icon" style="width: 5em; height: 5em; vertical-align: middle;"> Locations: {{ total_locations }}</p>
+    <p><img src="{{ url_for('static', filename='assets/episodes-icon.png') }}" alt="Episodes Icon" style="width: 5em; height: 5em; vertical-align: middle;"> Episodes: {{ total_episodes }}</p>
 </section>
 
         <section class="hero">
@@ -148,42 +148,50 @@
     {% endif %}
 </main>
 <footer>
-    <p>Server Status: <span
-            class="{{ 'online' if server_status else 'offline' }}">{{ 'Online' if server_status else 'Offline' }}</span>
-    </p>
+    <p>Server Status: <span class="{{ 'online' if server_status else 'offline' }}">{{ 'Online' if server_status else 'Offline' }}</span></p>
 </footer>
 
 <script>
-    document.getElementById('filter-form').addEventListener('submit', function () {
-        showSkeletonLoader();
-    });
-
-    document.getElementById('reset-button').addEventListener('click', function () {
-        window.location.href = '/';
-    });
-
-    document.querySelectorAll('.pagination-link').forEach(function (link) {
-        link.addEventListener('click', function () {
-            showSkeletonLoader();
-        });
-    });
-
-    function showSkeletonLoader() {
-        const cardsContainer = document.getElementById('cards');
-        cardsContainer.innerHTML = '';
-        for (let i = 0; i < 8; i++) {
-            const skeletonCard = document.createElement('div');
-            skeletonCard.classList.add('card', 'skeleton');
-            skeletonCard.innerHTML = `
-                <div class="skeleton-image"></div>
-                <div class="skeleton-text"></div>
-                <div class="skeleton-badges"></div>
-                <div class="skeleton-text short"></div>
-                <div class="skeleton-text"></div>
-            `;
-            cardsContainer.appendChild(skeletonCard);
+    document.addEventListener('DOMContentLoaded', function () {
+        const filterForm = document.getElementById('filter-form');
+        if (filterForm) {
+            filterForm.addEventListener('submit', function () {
+                showSkeletonLoader();
+            });
         }
-    }
+
+        const resetButton = document.getElementById('reset-button');
+        if (resetButton) {
+            resetButton.addEventListener('click', function () {
+                window.location.href = '/';
+            });
+        }
+
+        document.querySelectorAll('.pagination-link').forEach(function (link) {
+            link.addEventListener('click', function () {
+                showSkeletonLoader();
+            });
+        });
+
+        function showSkeletonLoader() {
+            const cardsContainer = document.getElementById('cards');
+            if (cardsContainer) {
+                cardsContainer.innerHTML = '';
+                for (let i = 0; i < 8; i++) {
+                    const skeletonCard = document.createElement('div');
+                    skeletonCard.classList.add('card', 'skeleton');
+                    skeletonCard.innerHTML = `
+                        <div class="skeleton-image"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-badges"></div>
+                        <div class="skeleton-text short"></div>
+                        <div class="skeleton-text"></div>
+                    `;
+                    cardsContainer.appendChild(skeletonCard);
+                }
+            }
+        }
+    });
 </script>
 
 </body>
