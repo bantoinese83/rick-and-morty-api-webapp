@@ -16,11 +16,14 @@
 
 <main>
     {% if server_status %}
-<section class="summary">
-    <p><img src="{{ url_for('static', filename='assets/characters-icon.png') }}" alt="Characters Icon" style="width: 5em; height: 5em; vertical-align: middle;"> Characters: {{ total_characters }}</p>
-    <p><img src="{{ url_for('static', filename='assets/location-icon.png') }}" alt="Location Icon" style="width: 5em; height: 5em; vertical-align: middle;"> Locations: {{ total_locations }}</p>
-    <p><img src="{{ url_for('static', filename='assets/episodes-icon.png') }}" alt="Episodes Icon" style="width: 5em; height: 5em; vertical-align: middle;"> Episodes: {{ total_episodes }}</p>
-</section>
+        <section class="summary">
+            <p><img src="{{ url_for('static', filename='assets/characters-icon.png') }}" alt="Characters Icon"
+                    style="width: 5em; height: 5em; vertical-align: middle;"> Characters: {{ total_characters }}</p>
+            <p><img src="{{ url_for('static', filename='assets/location-icon.png') }}" alt="Location Icon"
+                    style="width: 5em; height: 5em; vertical-align: middle;"> Locations: {{ total_locations }}</p>
+            <p><img src="{{ url_for('static', filename='assets/episodes-icon.png') }}" alt="Episodes Icon"
+                    style="width: 5em; height: 5em; vertical-align: middle;"> Episodes: {{ total_episodes }}</p>
+        </section>
 
         <section class="hero">
             <img src="{{ url_for('static', filename='assets/hero-image.png') }}" alt="Hero Image">
@@ -88,44 +91,44 @@
                             <h2>{{ character.name }}</h2>
                         </header>
                         <img src="{{ character.image }}" alt="{{ character.name }}" loading="lazy">
-<dl class="badges">
-    <div class="badge status {{ character.status|lower }}" data-color="default">
-        <div class="badge-icon">
-            {% if character.status|lower == 'alive' %}
-                <i class="fas fa-heartbeat"></i>
-            {% elif character.status|lower == 'dead' %}
-                <i class="fas fa-skull-crossbones"></i>
-            {% else %}
-                <i class="fas fa-question-circle"></i>
-            {% endif %}
-        </div>
-        <div class="badge-text">
-            <span>Status: {{ character.status }}</span>
-        </div>
-    </div>
-    <div class="badge species" data-color="dark">
-        <div class="badge-icon">
-            {% if character.species|lower == 'human' %}
-                <i class="fas fa-user"></i>
-            {% elif character.species|lower == 'alien' %}
-                <i class="fas fa-space-shuttle"></i>
-            {% else %}
-                <i class="fas fa-question-circle"></i>
-            {% endif %}
-        </div>
-        <div class="badge-text">
-            <span>Species: {{ character.species }}</span>
-        </div>
-    </div>
-    <div class="badge origin" data-color="light">
-        <div class="badge-icon">
-            <i class="fas fa-globe"></i>
-        </div>
-        <div class="badge-text">
-            <span>Origin: {{ character.origin.name }}</span>
-        </div>
-    </div>
-</dl>
+                        <dl class="badges">
+                            <div class="badge status {{ character.status|lower }}" data-color="default">
+                                <div class="badge-icon">
+                                    {% if character.status|lower == 'alive' %}
+                                        <i class="fas fa-heartbeat"></i>
+                                    {% elif character.status|lower == 'dead' %}
+                                        <i class="fas fa-skull-crossbones"></i>
+                                    {% else %}
+                                        <i class="fas fa-question-circle"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="badge-text">
+                                    <span>Status: {{ character.status }}</span>
+                                </div>
+                            </div>
+                            <div class="badge species" data-color="dark">
+                                <div class="badge-icon">
+                                    {% if character.species|lower == 'human' %}
+                                        <i class="fas fa-user"></i>
+                                    {% elif character.species|lower == 'alien' %}
+                                        <i class="fas fa-space-shuttle"></i>
+                                    {% else %}
+                                        <i class="fas fa-question-circle"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="badge-text">
+                                    <span>Species: {{ character.species }}</span>
+                                </div>
+                            </div>
+                            <div class="badge origin" data-color="light">
+                                <div class="badge-icon">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <div class="badge-text">
+                                    <span>Origin: {{ character.origin.name }}</span>
+                                </div>
+                            </div>
+                        </dl>
                         <p>Last Known Location: {{ character.location.name }}</p>
                         <p>First Seen In: {{ character.first_seen_in }}</p>
                     </div>
@@ -148,7 +151,11 @@
     {% endif %}
 </main>
 <footer>
-    <p>Server Status: <span class="{{ 'online' if server_status else 'offline' }}">{{ 'Online' if server_status else 'Offline' }}</span></p>
+    <p>Server Status: <span
+            class="{{ 'online' if server_status else 'offline' }}">{{ 'Online' if server_status else 'Offline' }}</span>
+    </p>
+    <p class="logo-text"><img src="{{ url_for('static', filename='assets/base83-logo.jpeg') }}" alt="Base83 Logo">
+        <span>built by: Bryan Antoine</span></p>
 </footer>
 
 <script>

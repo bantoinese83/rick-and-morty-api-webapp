@@ -469,3 +469,23 @@ footer .offline {
     border-radius: 5px;
     margin-bottom: 1rem;
 }
+
+footer .logo-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+footer .logo-text img {
+    width: 50px;
+    height: auto;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+footer .logo-text span {
+    font-size: 1rem;
+    color: #fff;
+}
