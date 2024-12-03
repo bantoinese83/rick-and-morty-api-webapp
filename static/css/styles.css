@@ -1,0 +1,471 @@
+body {
+    font-family: "Get Schwifty", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.logo-container {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.logo {
+    width: 500px;
+    height: auto;
+}
+
+main {
+    padding: 1rem;
+}
+
+.summary {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.card {
+    /* Semi-transparent background */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Semi-transparent border */
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    backdrop-filter: blur(50px); /* Blur effect */
+    -webkit-backdrop-filter: blur(50px); /* Blur effect for Safari */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    color: #fff; /* Ensure text is white for better readability */
+    background-size: cover;
+    background-blend-mode: overlay; /* Blend background with text */
+    background-repeat: no-repeat; /* Ensure background image does not repeat */
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Add background to header for readability */
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.card p {
+    margin: 0.5rem 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Add background to paragraphs for readability */
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.card img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-top: 1rem; /* Add margin to separate the avatar from the background */
+    border: 3px solid #1e1e1d; /* Add a gold/yellow border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+.card p {
+    margin: 0.5rem 0;
+}
+
+footer {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+}
+
+.online {
+    color: green;
+}
+
+.offline {
+    color: red;
+}
+
+.alive {
+    color: green;
+}
+
+.dead {
+    color: red;
+}
+
+.animated-icon {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+}
+
+/* Rick and Morty Theme Colors */
+body {
+    background-color: #1b1b1b; /* Dark background */
+    color: #e0e0e0; /* Light text */
+}
+
+.hero {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.hero img {
+    max-width: 100%;
+    height: 50vh;
+    border-radius: 10px;
+}
+
+footer {
+    background-color: #1b1b1b; /* Dark teal/blue */
+    color: #ecf0f1; /* Off-white text */
+    text-align: center;
+    padding: 1rem;
+    font-size: 1rem;
+    border-top: 2px solid #f39c12; /* Gold/Yellow border */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+footer p {
+    margin: 0;
+}
+
+footer .online {
+    color: #27ae60; /* Green for online status */
+    font-weight: bold;
+    animation: pulseGlow 1.5s infinite;
+}
+
+@keyframes pulseGlow {
+    0% {
+        text-shadow: 0 0 5px #27ae60, 0 0 10px #27ae60, 0 0 15px #27ae60, 0 0 20px #27ae60;
+    }
+    50% {
+        text-shadow: 0 0 10px #27ae60, 0 0 20px #27ae60, 0 0 30px #27ae60, 0 0 40px #27ae60;
+    }
+    100% {
+        text-shadow: 0 0 5px #27ae60, 0 0 10px #27ae60, 0 0 15px #27ae60, 0 0 20px #27ae60;
+    }
+}
+
+footer .offline {
+    color: #e74c3c; /* Red for offline status */
+    font-weight: bold;
+}
+
+.card {
+    background-color: #659a92; /* Slightly lighter teal/blue */
+    color: #ecf0f1; /* Off-white text */
+}
+
+.card h2 {
+    color: #f39c12; /* Gold/Yellow for headings */
+}
+
+.card .status.alive {
+    color: #27ae60; /* Green for alive status */
+}
+
+.card .status.dead {
+    color: #e74c3c; /* Red for dead status */
+}
+
+.card .status.unknown {
+    color: #95a5a6; /* Gray for unknown status */
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.pagination a {
+    color: #f39c12; /* Gold/Yellow for links */
+    background-color: #34495e; /* Slightly lighter teal/blue */
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid #f39c12;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #f39c12; /* Gold/Yellow on hover */
+    color: #34495e; /* Slightly lighter teal/blue on hover */
+}
+
+.badges {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    color: #fff; /* Default text color for badges */
+}
+
+.badge.status.alive {
+    background-color: #27ae60; /* Green for alive status */
+    color: #fff; /* Ensure text is white */
+}
+
+.badge.status.dead {
+    background-color: #e74c3c; /* Red for dead status */
+    color: #fff; /* Ensure text is white */
+}
+
+.badge.status.unknown {
+    background-color: #95a5a6; /* Gray for unknown status */
+    color: #fff; /* Ensure text is white */
+}
+
+.badge.species {
+    background-color: #3498db; /* Blue for species */
+    color: #fff; /* Ensure text is white */
+}
+
+.badge.origin {
+    background-color: #9b59b6; /* Purple for origin */
+    color: #fff; /* Ensure text is white */
+}
+
+/* Skeleton loader styles */
+.skeleton {
+    animation: shimmer 2s infinite;
+}
+
+.image-placeholder {
+    background: #d8d8d8;
+    height: 150px;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.text-placeholder {
+    background: #e0e0e0;
+    height: 20px;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+}
+
+.title-placeholder {
+    width: 70%;
+    height: 25px;
+}
+
+.badge-placeholder {
+    background: #d8d8d8;
+    height: 30px;
+    width: 60%;
+    margin: 0.5rem auto;
+    border-radius: 15px;
+}
+
+/* Skeleton loader styles */
+.skeleton {
+    animation: shimmer 2s infinite;
+}
+
+.image-placeholder {
+    background: #d8d8d8;
+    height: 150px;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.text-placeholder {
+    background: #e0e0e0;
+    height: 20px;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+}
+
+.title-placeholder {
+    width: 70%;
+    height: 25px;
+}
+
+.badge-placeholder {
+    background: #d8d8d8;
+    height: 30px;
+    width: 60%;
+    margin: 0.5rem auto;
+    border-radius: 15px;
+}
+
+/* Skeleton Loader Styles */
+.skeleton {
+    background-color: #2c3e50; /* Dark Blue */
+    border: none;
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0.7;
+    animation: pulse 1.5s infinite;
+}
+
+.skeleton-image {
+    width: 100%;
+    height: 150px;
+    background-color: #51b363; /* Slightly Lighter Blue */
+    border-radius: 5px;
+    background-image: url('../assets/rick-and-morty-loader-image.png'); /* Use relative path */
+    background-size: cover;
+    background-position: center;
+}
+
+.skeleton-text {
+    height: 20px;
+    background-color: #34495e; /* Slightly Lighter Blue */
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.skeleton-text.short {
+    width: 60%;
+}
+
+.skeleton-badges {
+    height: 30px;
+    background-color: #34495e; /* Slightly Lighter Blue */
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.7;
+    }
+}
+
+/* Add styles for the search and filter toolbar */
+.toolbar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.toolbar form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.toolbar input,
+.toolbar select,
+.toolbar button {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.toolbar button {
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toolbar button:hover {
+    background-color: #e67e22;
+}
+
+
+
+:root {
+    --color-primary: #214fe0;
+    --color-dark: #1d1f20;
+    --color-light: #f4f4f4;
+    --color-shade: #bbb;
+    --badge-size: 250px;
+    --lock-color: #fff;
+    --lock-width: 30px;
+    --lock-stroke: 2.5px;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem; /* Adjust padding */
+    border-radius: 5px; /* Adjust border radius */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adjust shadow */
+    margin-bottom: 0.5rem; /* Adjust margin */
+    transition: background 0.3s, box-shadow 0.3s;
+    font-size: 0.75rem; /* Adjust font size */
+}
+
+.badge-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; /* Adjust width */
+    height: 20px; /* Adjust height */
+    margin-right: 0.5rem; /* Adjust margin */
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.badge-text {
+    font-size: 0.75rem; /* Adjust font size */
+    font-weight: bold;
+    color: #fff;
+}
+
+.badge[data-color="default"] {
+    background: linear-gradient(45deg, #214fe0, #1d1f20);
+}
+
+.badge[data-color="light"] {
+    background: linear-gradient(45deg, #f4f4f4, #bbb);
+    color: #1d1f20;
+}
+
+.badge[data-color="dark"] {
+    background: linear-gradient(45deg, #1d1f20, #000);
+}
+
+.badge[data-color="default"]:hover,
+.badge[data-color="light"]:hover,
+.badge[data-color="dark"]:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.badge-icon img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.summary img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}

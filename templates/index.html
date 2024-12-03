@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rick and Morty API</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<div class="logo-container">
+    <img src="{{ url_for('static', filename='assets/Rick_and_Morty_Logo.svg') }}" alt="Rick and Morty Logo"
+         class="logo">
+</div>
+
+<main>
+    {% if server_status %}
+<section class="summary">
+    <p><img src="{{ url_for('static', filename='assets/characters-icon.png') }}" alt="Characters Icon" style="width: 5em; height: 5em; vertical-align: middle;"> Characters: {{ characters|length }}</p>
+    <p><img src="{{ url_for('static', filename='assets/location-icon.png') }}" alt="Location Icon" style="width: 5em; height: 5em; vertical-align: middle;"> Locations: {{ locations.info.count }}</p>
+    <p><img src="{{ url_for('static', filename='assets/episodes-icon.png') }}" alt="Episodes Icon" style="width: 5em; height: 5em; vertical-align: middle;"> Episodes: {{ episodes.info.count }}</p>
+</section>
+
+        <section class="hero">
+            <img src="{{ url_for('static', filename='assets/hero-image.png') }}" alt="Hero Image">
+        </section>
+
+        <!-- Search and Filter Toolbar -->
+        <section class="toolbar">
+            <form method="get" action="/" id="filter-form">
+                <label for="search-name">Search by name</label>
+                <input id="search-name" type="text" name="name" placeholder="Search by name"
+                       value="{{ request.args.get('name', '') }}">
+
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                    <option value="">All Statuses</option>
+                    <option value="alive" {% if request.args.get('status') == 'alive' %}selected{% endif %}>Alive
+                    </option>
+                    <option value="dead" {% if request.args.get('status') == 'dead' %}selected{% endif %}>Dead</option>
+                    <option value="unknown" {% if request.args.get('status') == 'unknown' %}selected{% endif %}>
+                        Unknown
+                    </option>
+                </select>
+
+                <label for="species">Species</label>
+                <select id="species" name="species">
+                    <option value="">All Species</option>
+                    <option value="human" {% if request.args.get('species') == 'human' %}selected{% endif %}>Human
+                    </option>
+                    <option value="alien" {% if request.args.get('species') == 'alien' %}selected{% endif %}>Alien
+                    </option>
+                </select>
+
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender">
+                    <option value="">All Genders</option>
+                    <option value="male" {% if request.args.get('gender') == 'male' %}selected{% endif %}>Male</option>
+                    <option value="female" {% if request.args.get('gender') == 'female' %}selected{% endif %}>Female
+                    </option>
+                    <option value="unknown" {% if request.args.get('gender') == 'unknown' %}selected{% endif %}>
+                        Unknown
+                    </option>
+                </select>
+
+                <button type="submit">Search</button>
+                <button type="button" id="reset-button">Reset</button>
+            </form>
+        </section>
+
+        <section class="cards" id="cards">
+
+            {% if loading %}
+                {% for _ in range(8) %}
+                    <div class="card skeleton">
+                        <div class="skeleton-image"></div>
+                        <div class="skeleton-text"></div>
+                        <div class="skeleton-badges"></div>
+                        <div class="skeleton-text short"></div>
+                        <div class="skeleton-text"></div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                {% for character in characters %}
+                    <div class="card" style="background-image: url('{{ character.image }}');">
+                        <header>
+                            <h2>{{ character.name }}</h2>
+                        </header>
+                        <img src="{{ character.image }}" alt="{{ character.name }}" loading="lazy">
+<dl class="badges">
+    <div class="badge status {{ character.status|lower }}" data-color="default">
+        <div class="badge-icon">
+            {% if character.status|lower == 'alive' %}
+                <i class="fas fa-heartbeat"></i>
+            {% elif character.status|lower == 'dead' %}
+                <i class="fas fa-skull-crossbones"></i>
+            {% else %}
+                <i class="fas fa-question-circle"></i>
+            {% endif %}
+        </div>
+        <div class="badge-text">
+            <span>Status: {{ character.status }}</span>
+        </div>
+    </div>
+    <div class="badge species" data-color="dark">
+        <div class="badge-icon">
+            {% if character.species|lower == 'human' %}
+                <i class="fas fa-user"></i>
+            {% elif character.species|lower == 'alien' %}
+                <i class="fas fa-space-shuttle"></i>
+            {% else %}
+                <i class="fas fa-question-circle"></i>
+            {% endif %}
+        </div>
+        <div class="badge-text">
+            <span>Species: {{ character.species }}</span>
+        </div>
+    </div>
+    <div class="badge origin" data-color="light">
+        <div class="badge-icon">
+            <i class="fas fa-globe"></i>
+        </div>
+        <div class="badge-text">
+            <span>Origin: {{ character.origin.name }}</span>
+        </div>
+    </div>
+</dl>
+                        <p>Last Known Location: {{ character.location.name }}</p>
+                        <p>First Seen In: {{ character.first_seen_in }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </section>
+
+        <div class="pagination">
+            {% if page > 1 %}
+                <a href="{{ url_for('index', page=page-1, name=name, status=status, species=species, gender=gender) }}"
+                   aria-current="page" class="pagination-link"><i class="fas fa-arrow-left"></i> Previous</a>
+            {% endif %}
+            {% if page < total_pages %}
+                <a href="{{ url_for('index', page=page+1, name=name, status=status, species=species, gender=gender) }}"
+                   aria-current="page" class="pagination-link">Next <i class="fas fa-arrow-right"></i></a>
+            {% endif %}
+        </div>
+    {% else %}
+        <p>API server is currently unavailable. Please try again later.</p>
+    {% endif %}
+</main>
+<footer>
+    <p>Server Status: <span
+            class="{{ 'online' if server_status else 'offline' }}">{{ 'Online' if server_status else 'Offline' }}</span>
+    </p>
+</footer>
+
+<script>
+    document.getElementById('filter-form').addEventListener('submit', function () {
+        showSkeletonLoader();
+    });
+
+    document.getElementById('reset-button').addEventListener('click', function () {
+        window.location.href = '/';
+    });
+
+    document.querySelectorAll('.pagination-link').forEach(function (link) {
+        link.addEventListener('click', function () {
+            showSkeletonLoader();
+        });
+    });
+
+    function showSkeletonLoader() {
+        const cardsContainer = document.getElementById('cards');
+        cardsContainer.innerHTML = '';
+        for (let i = 0; i < 8; i++) {
+            const skeletonCard = document.createElement('div');
+            skeletonCard.classList.add('card', 'skeleton');
+            skeletonCard.innerHTML = `
+                <div class="skeleton-image"></div>
+                <div class="skeleton-text"></div>
+                <div class="skeleton-badges"></div>
+                <div class="skeleton-text short"></div>
+                <div class="skeleton-text"></div>
+            `;
+            cardsContainer.appendChild(skeletonCard);
+        }
+    }
+</script>
+
+</body>
+</html>
